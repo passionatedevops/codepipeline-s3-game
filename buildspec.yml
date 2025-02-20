@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "No dependencies required for static files"
+
+  pre_build:
+    commands:
+      - echo "Starting pre-build phase..."
+  
+  build:
+    commands:
+      - echo "Building the project - copying files"
+      - mkdir -p build
+      - cp -r *.html *.js *.css codepipeline-s3-game-artifacts/
+
+  post_build:
+    commands:
+      - echo "Build complete. Preparing artifacts..."
+  
+artifacts:
+  files:
+    - codepipeline-s3-game-artifacts/**/*
+  discard-paths: no
